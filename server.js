@@ -14,5 +14,5 @@ app.use('/api', userRoutes)
 
 // Port du server
 app.listen(3030, () => {
-    console.log("Lectur du server sur le port 3030")
+    console.log("Lecture du server sur le port 3030")
 });

@@ -4,18 +4,19 @@ const generateToken = require('../creationToken').generateToken
 const db = require('../config/db')
 module.exports = {
     addUser: (req, res) => {
-        const { name, password, role, email } = req.body
+        const { lastname, firstname, password, email } = req.body
     
+        const userRole = 1
         bcrypt.hash(password, 10, (error, hashedPassword) => {
             if(error) {
                 console.log(error)
                 res.status(500).json({ error: 'Operation failed' })
             } else {
-                const newUser = { name, password: hashedPassword, role, email }
-                db.query('INSERT INTO USER SET ?', newUser, (error, result) => {
+                const newUser = { lastname, firstname, password: hashedPassword, email, role_id: userRole}
+                db.query('INSERT INTO USERS SET ?', newUser, (error, result) => {
                     if(error) {
                         console.log(error)
-                        res.status(500).json({ error: 'Operation failed' })
+                        res.status(500).json({ error: "La création d'utilisateur échouée" })
                     } else {
                         const user = { id: result.insertId, ...newUser }
                         const token = generateToken(user)

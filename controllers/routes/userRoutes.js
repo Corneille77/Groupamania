@@ -1,5 +1,5 @@
 const express = require('express')
-const usersControllers = require('../controllers/userControllers')
+const usersControllers = require('../userControllers')
 
 exports.router = (() => {
 

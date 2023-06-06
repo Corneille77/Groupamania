@@ -1,14 +1,15 @@
 const express = require("express");
 const dotenv = require('dotenv')
 const app = express();
-const userRoutes = require('./routes/user.routes').router
+const colors =  require('colors')
+const userRoutes = require('./controllers/routes/userRoutes').router
 
 dotenv.config({path: './.env'})
 
 app.use(express.json())
 
 // Routes
-app.use('/api', userRoutes)
+app.use('/api', userRoutes) 
 
 
 
